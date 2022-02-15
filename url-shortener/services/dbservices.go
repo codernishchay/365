@@ -8,16 +8,16 @@ type DB struct {
 	dbConnection *gorm.DB
 }
 
-func (db *DB) create(body interface{}, url string) {
-
+func (db *DB) Create(body interface{}) {
+	db.dbConnection.Create(&body)
 }
 
-func (db *DB) delete(id string, url string) {
-
+func (db *DB) Delete(body interface{}, id string, url string) {
+	db.dbConnection.Delete(&body, 1)
 }
 
-func (db *DB) update(id string, body interface{}, model string) {
-
+func (db *DB) Update(id string, body interface{}, model string) {
+	db.dbConnection.Model(&body).Update(body)
 }
 
 func (db *DB) getbyID(id string) {
